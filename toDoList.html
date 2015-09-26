@@ -3,38 +3,81 @@
 <body>
 	<h1>LocaList</h1>
     <h5>LocaList for your loooca life</h5>
-    <input type="button" value="+" onClick="newList()"/>
+    <input type="button" value="New List!" onClick="newList()"/>
  	<input type="textbox" id="addedItem" />
-    <input type="button" value="Add List" onclick="addList('ToDoListTable')" onKeyDown = "Javascript: if (event.keyCode==13) addList('ToDoListTable');"/>
-    <input type="button" value="Delete List" onclick="deleteList('ToDoListTable')" />
-    <h3 id = "demo">  </h3>
-    <table id="ToDoListTable" width="350px" bordez="1"></table>
+    <input type="button" value="Add Item List0!" onclick="addList('ToDoListTable0', 0)"/>
+    <input type="button" value="Delete Item List0!" onclick="deleteList('ToDoListTable0', 0)" />
+    <h3 id = "demo0">  </h3>
+    <table id="ToDoListTable0" width="350px" border=".5"></table>
+    <br>
+    <br>
+    <br>
 
-	Total Items: <a id="pTotal"></a>
+    <input type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)"/>
+    <input type="button" value="Delete Item List1!" onclick="deleteList('ToDoListTable1', 1)" />
+    <h3 id = "demo1">  </h3>
+    <table id="ToDoListTable1" width="350px" border=".5"></table>
+    
+    <!-- <table id="ToDoListTable3" width="350px" border=".5"></table> -->
+    <!-- THREE TABLES MAX FOR NOW -->
+	<!-- Total Items: <a id="pTotal"></a> -->
 
 
 
 	<script>
 
-        // var lists = [];
-        var lName;
-        var con=[];
-        var loc;
-        // var index = 0;
-        // var con;
-        function newList() {
-            // var list = {lName : "listName", contents : [], loc : "location"};
-            loc = "location";
+        var lists = [];
+        // var lName;
+        // var con=[];
+        // var loc;
+       function newList() {
+            // var list = {lName:"listName", con:[], loc:"location"};
+            // loc = "location";
             // lName = "listName";
 
             // lists.push(list);
-            var lName = prompt("What's your list's name", "Yo List");
-            document.getElementById("demo").innerHTML = lName;
+            var lastlName = prompt("What's your list's name", "Yo List");
+            var demoStr = "demo" + lists.length;
+            // alert(demoStr);
+            document.getElementById(demoStr).innerHTML = lastlName;
+            var list = {lName:lastlName, con:[], loc:"location"};
+            // alert("name " + list.lName);
+            // alert("items " + list.con);
+            // alert("location " + list.loc);
+            lists.push(list);
+            // getName(index);
             // con = list.contents;
             // window.alert(lName);
+            // index = index + 1;
         }
 
-	  	function addList(myTable) {
+        function getName(anIndex) {
+            // alert(lists[anIndex].lName);
+            return lists[anIndex].lName;
+        }
+
+        function getItems(anIndex) {
+            return lists[anIndex].con;
+        }
+
+        function getLocation(anIndex) {
+            return lists[anIndex].loc;
+        }
+
+        // function setItems(anIndex, anItem) {
+            // getItems(anIndex).push(anItem);
+            // alert(getItems(anIndex));
+        // }
+
+        // function deleteItems(anIndex, anI) {
+        //     getItems(anIndex).splice(anI,1);
+        //     alert(getItems(anIndex));
+
+        // }
+
+
+
+	  	function addList(myTable, index) {
             var table = document.getElementById(myTable);
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
@@ -55,9 +98,12 @@
             cell2.appendChild(element2);
 			
 			var newItem = document.getElementById('addedItem').value;
-			document.getElementById('pTotal').innerHTML= rowCount + 1;
+			// document.getElementById('pTotal').innerHTML= rowCount + 1;
 
-            con.push(newItem);
+            // setItems(index, newItem);
+            getItems(index).push(newItem);
+            // alert(getItems(index));
+            // con.push(newItem);
             // alert(con);
             // var curList = ;
             // alert(addedItem);
@@ -71,7 +117,7 @@
             // window.alert("lists[index].content" + con);
         }
 
-        function deleteList(myTable) {
+        function deleteList(myTable, index) {
 
             var table = document.getElementById(myTable);
             var rowCount = table.rows.length;
@@ -81,16 +127,16 @@
                 var chkbox = row.cells[1].childNodes[0];
                 if(null != chkbox && true == chkbox.checked) {
                     table.deleteRow(i);
-                    con.splice(i,1);
+                    // deleteItems(index,i);
+                    getItems(index).splice(i,1);
+                    // con.splice(i,1);
                     rowCount--;
                     i--;
-
- 			        document.getElementById('pTotal').innerHTML= rowCount;
-
+ 			        // document.getElementById('pTotal').innerHTML= rowCount;
                 }
             }
 
-            alert(con);
+            alert(getItems(index));
         }
 
 	</script>
