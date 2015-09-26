@@ -4,7 +4,11 @@
 	<h1>LocaList</h1>
     <h5>LocaList for your loooca life</h5>
     <input type="button" value="New List!" onClick="newList()"/>
+    <br>
+    <br>
  	<input type="textbox" id="addedItem" />
+    <br>
+    <br>
     <input type="button" value="Add Item List0!" onclick="addList('ToDoListTable0', 0)"/>
     <input type="button" value="Delete Item List0!" onclick="deleteList('ToDoListTable0', 0)" />
     <h3 id = "demo0">  </h3>
@@ -12,12 +16,11 @@
     <br>
     <br>
     <br>
-
-    <input type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)"/>
+    <input type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)" />
     <input type="button" value="Delete Item List1!" onclick="deleteList('ToDoListTable1', 1)" />
     <h3 id = "demo1">  </h3>
     <table id="ToDoListTable1" width="350px" border=".5"></table>
-    
+
     <!-- <table id="ToDoListTable3" width="350px" border=".5"></table> -->
     <!-- THREE TABLES MAX FOR NOW -->
 	<!-- Total Items: <a id="pTotal"></a> -->
@@ -31,6 +34,7 @@
         // var con=[];
         // var loc;
        function newList() {
+
             // var list = {lName:"listName", con:[], loc:"location"};
             // loc = "location";
             // lName = "listName";
@@ -78,6 +82,8 @@
 
 
 	  	function addList(myTable, index) {
+
+
             var table = document.getElementById(myTable);
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
