@@ -4,12 +4,33 @@
 
 	<p>Header... </p>
 
+	<!-- <button onclick="newList()"> + </button> -->
+	<!-- <p id = "idk"></p> -->
+	<input type = "button" value = "+" onclick = "newList()">
+	
+	<!-- <canvas id="canvas" width="200" height="200"> no html5 </canvas> -->
+
 	<script>
-		//alert('Hello World!')
-		// var c = document.getElementById("myCanvas");
-		// var ctx = c.getContex("2d");
+	// var c = document.getElementById("myCanvas");
+	// c.innerHTML = getContex("2d");
+
+	// var ctx = c.getContex("2d");
+	var lists = [];
+	function newList(){
+
+		var list = {lName : "listName", contents : [], loc : "location"};
+		lists.push(list);
+		window.alert(list.loc);
+		
 		// ctx.rect(20,20,150,100);
+		// ctx.fill(250);
+		
 		// ctx.stroke();
+		// c.innerHTML = getContex("2d");
+	}
+		//alert('Hello World!')
+		
+
 	</script>
 
 </body>
