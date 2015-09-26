@@ -2,14 +2,26 @@
 <html>
 <body>
 
-	Add Item to your to-do list: <input type="text" id="myFunc">
+	Add Item to your to-do list: <input type="text" id="addedItem">
 
-		<input type="button" value="Add Item!" onClick="addItem()" />
+	<input type="button" value="Add Item!" onClick="addItem()" />
+
+	Delete Item from your to-do list: <input type="text" id="deletedItem">
+
+	<input type="button" value="Delete!" onClick="deleteItem()" />
+
 	<script>
 		var aList = [];
 		function addItem() {
-			aList.push(document.getElementById("myFunc").value);
+			aList.push(document.getElementById("addedItem").value);
 			// document.write(aList);
+			alert(aList);
+
+		}
+		function deleteItem() {
+			var deleteItem = document.getElementById("deletedItem");
+			var index = aList.indexOf(deleteItem);
+			aList.splice(index-1,1);
 			alert(aList);
 		}
 
