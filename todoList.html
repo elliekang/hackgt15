@@ -2,11 +2,17 @@
 <html>
 <body>
 
-	<p>Header... <\p>
+	Add Item to your to-do list: <input type="text" id="myFunc">
 
+		<input type="button" value="Add Item!" onClick="addItem()" />
 	<script>
-		alert('Hello World!')
-	</script>
+		var aList = [];
+		function addItem() {
+			aList.push(document.getElementById("myFunc").value);
+			// document.write(aList);
+			alert(aList);
+		}
 
+	</script>
 </body>
 </html>
