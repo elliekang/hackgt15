@@ -1,37 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <style>
-      #autocomplete {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 99%;
-      }
-      #locationField {
-        position: relative;
-        width: 480px;
-        height: 20px;
-        margin-bottom: 2px;
-      }
-    </style>
+    <title>LocaList</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="location.css" type="text/css">
   </head>
-  <body onload="initAutocomplete">
-    <div id="locationField">
-      <input id="autocomplete" placeholder="Enter your location" onfocus="geolocate()" type="text" autocomplete="off"></input>
-    </div>
-    <script type="text/javascript" src="location.js"></script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWCBJKNSWIy-qZ-NSoQPbKJubUtxK5kTI&signed_in=true&libraries=places&callback=initAutocomplete">
-    </script>
-    <div class="pac-container pac-logo" style="display: none;"></div>
+  <body onload="initMap">
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+    <div id="map"></div>
+
+    <script src="location.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWCBJKNSWIy-qZ-NSoQPbKJubUtxK5kTI&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
   </body>
 </html>
