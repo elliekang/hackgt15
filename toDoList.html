@@ -1,17 +1,38 @@
 <!DOCTYPE HTML>
 <html>
 <body>
-	<h1>To-Do List</h1>
-
+	<h1>LocaList</h1>
+    <h5>LocaList for your loooca life</h5>
+    <input type="button" value="+" onClick="newList()"/>
  	<input type="textbox" id="addedItem" />
-    <input type="button" value="Add List" onclick="addList('ToDoListTable')" />
+    <input type="button" value="Add List" onclick="addList('ToDoListTable')" onKeyDown = "Javascript: if (event.keyCode==13) addList('ToDoListTable');"/>
     <input type="button" value="Delete List" onclick="deleteList('ToDoListTable')" />
+    <h3 id = "demo">  </h3>
     <table id="ToDoListTable" width="350px" bordez="1"></table>
 
-	Total Work pending <a id="pTotal"></a>
+	Total Items: <a id="pTotal"></a>
+
 
 
 	<script>
+
+        // var lists = [];
+        var lName;
+        var con=[];
+        var loc;
+        // var index = 0;
+        // var con;
+        function newList() {
+            // var list = {lName : "listName", contents : [], loc : "location"};
+            loc = "location";
+            // lName = "listName";
+
+            // lists.push(list);
+            var lName = prompt("What's your list's name", "Yo List");
+            document.getElementById("demo").innerHTML = lName;
+            // con = list.contents;
+            // window.alert(lName);
+        }
 
 	  	function addList(myTable) {
             var table = document.getElementById(myTable);
@@ -33,8 +54,21 @@
             element2.name="chkbox[]";
             cell2.appendChild(element2);
 			
-			document.getElementById('addedItem').value=" ";
+			var newItem = document.getElementById('addedItem').value;
 			document.getElementById('pTotal').innerHTML= rowCount + 1;
+
+            con.push(newItem);
+            // alert(con);
+            // var curList = ;
+            // alert(addedItem);
+            // var con = lists[index].content;
+            // alert(con);
+            // con.push(addedItem);
+            // alert(con);
+            // lists[index].content.push(addedItem);
+            // getContents().push(addedItem);
+            // contents.push(addedItem);
+            // window.alert("lists[index].content" + con);
         }
 
         function deleteList(myTable) {
@@ -47,13 +81,16 @@
                 var chkbox = row.cells[1].childNodes[0];
                 if(null != chkbox && true == chkbox.checked) {
                     table.deleteRow(i);
+                    con.splice(i,1);
                     rowCount--;
                     i--;
 
- 			document.getElementById('pTotal').innerHTML= rowCount;
+ 			        document.getElementById('pTotal').innerHTML= rowCount;
 
+                }
             }
-            }
+
+            alert(con);
         }
 
 	</script>
