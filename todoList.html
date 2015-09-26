@@ -1,29 +1,60 @@
 <!DOCTYPE HTML>
 <html>
 <body>
+	<h1>To-Do List</h1>
 
-	Add Item to your to-do list: <input type="text" id="addedItem">
+ 	<input type="textbox" id="addedItem" />
+    <input type="button" value="Add List" onclick="addList('ToDoListTable')" />
+    <input type="button" value="Delete List" onclick="deleteList('ToDoListTable')" />
+    <table id="ToDoListTable" width="350px" bordez="1"></table>
 
-	<input type="button" value="Add Item!" onClick="addItem()" />
+	Total Work pending <a id="pTotal"></a>
 
-	Delete Item from your to-do list: <input type="text" id="deletedItem">
-
-	<input type="button" value="Delete!" onClick="deleteItem()" />
 
 	<script>
-		var aList = [];
-		function addItem() {
-			aList.push(document.getElementById("addedItem").value);
-			// document.write(aList);
-			alert(aList);
 
-		}
-		function deleteItem() {
-			var deleteItem = document.getElementById("deletedItem");
-			var index = aList.indexOf(deleteItem);
-			aList.splice(index-1,1);
-			alert(aList);
-		}
+	  	function addList(myTable) {
+            var table = document.getElementById(myTable);
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+          	var b=document.getElementById('addedItem').value;
+
+			var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "text";
+            element1.style.width="100%";
+            element1.name = "txtbox[]";
+            element1.value=b;
+            cell1.appendChild(element1);
+ 	
+ 			var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "checkbox";
+            element2.name="chkbox[]";
+            cell2.appendChild(element2);
+			
+			document.getElementById('addedItem').value=" ";
+			document.getElementById('pTotal').innerHTML= rowCount + 1;
+        }
+
+        function deleteList(myTable) {
+
+            var table = document.getElementById(myTable);
+            var rowCount = table.rows.length;
+
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[1].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+
+ 			document.getElementById('pTotal').innerHTML= rowCount;
+
+            }
+            }
+        }
 
 	</script>
 </body>
