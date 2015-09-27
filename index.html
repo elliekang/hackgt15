@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<h1>LocaList</h1>
+    <h5>LocaList for your loooca life</h5>
+    <input type="button" value="New List!" onClick="newList()"/>
+    <br>
+    <br>
+ 	<input type="textbox" id="addedItem" />
+    <br>
+    <br>
+    <h3 id = "demo0">  
+        
+        <!-- <input type = "button" value = "Select Location" onclick="selectLoc()"/>  -->
+        
+    </h3>
+    <input id = "firstAdd" type="button" value="Add Item List0!" onclick="addList('ToDoListTable0', 0)"/>
+    <input id = "firstDel" type="button" value="Delete Item List0!" onclick="deleteList('ToDoListTable0', 0)" />
+    <a id = "firstLoc" href = "location.html"><button>Select Location</button></a>
+
+    
+    <p id = "address">Address Here</p>
+    <table id="ToDoListTable0" width="350px" border=".5"></table>
+    <br>
+    <br>
+    <br>
+    <h3 id = "demo1">  </h3>
+    <input id = "secondAdd" type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)" />
+    <input id="secondDel" type="button" value="Delete Item List1!" onclick="deleteList('ToDoListTable1', 1)" />
+    <a id = "secondLoc" href = "location.html"><button>Select Location</button></a>
+    
+    <table id="ToDoListTable1" width="350px" border=".5"></table>
+
+
+    <!-- <input type = "button" value = "Select Location" onClick = "selectLoc()" /> -->
+    <!-- <table id="ToDoListTable3" width="350px" border=".5"></table> -->
+    <!-- THREE TABLES MAX FOR NOW -->
+	<!-- Total Items: <a id="pTotal"></a> -->
+
+
+
+	<script>
+
+        var lists = [];
+        document.getElementById("firstAdd").style.visibility = "hidden";
+        document.getElementById("firstDel").style.visibility = "hidden";
+        document.getElementById("firstLoc").style.visibility = "hidden";
+        document.getElementById("secondAdd").style.visibility = "hidden";
+        document.getElementById("secondDel").style.visibility = "hidden";
+
+        document.getElementById("secondLoc").style.visibility = "hidden";
+
+        // var lName;
+        // var con=[];
+        // var loc;
+       function newList() {
+            if (lists.length == 0) {
+                document.getElementById("firstAdd").style.visibility = "initial";
+                document.getElementById("firstDel").style.visibility = "initial";
+
+                document.getElementById("firstLoc").style.visibility = "initial";
+        
+            }
+            if (lists.length == 1) {
+                document.getElementById("secondAdd").style.visibility = "initial";
+                document.getElementById("secondDel").style.visibility = "initial";
+
+                document.getElementById("secondLoc").style.visibility = "initial";
+        
+            }
+
+            // document.getElementById("first").style.visibility = "hidden";
+
+            // var list = {lName:"listName", con:[], loc:"location"};
+            // loc = "location";
+            // lName = "listName";
+
+            // lists.push(list);
+            var lastlName = prompt("What's your list's name", "Yo List");
+            var demoStr = "demo" + lists.length;
+            // alert(demoStr);
+            document.getElementById(demoStr).innerHTML = lastlName;
+            var list = {lName:lastlName, con:[], loc:"location"};
+            // alert("name " + list.lName);
+            // alert("items " + list.con);
+            // alert("location " + list.loc);
+            lists.push(list);
+            // getName(index);
+            // con = list.contents;
+            // window.alert(lName);
+            // index = index + 1;
+        }
+
+        function getName(anIndex) {
+            // alert(lists[anIndex].lName);
+            return lists[anIndex].lName;
+        }
+
+        function getItems(anIndex) {
+            return lists[anIndex].con;
+        }
+
+        function getLocation(anIndex) {
+            return lists[anIndex].loc;
+        }
+
+        // function setItems(anIndex, anItem) {
+            // getItems(anIndex).push(anItem);
+            // alert(getItems(anIndex));
+        // }
+
+        // function deleteItems(anIndex, anI) {
+        //     getItems(anIndex).splice(anI,1);
+        //     alert(getItems(anIndex));
+
+        // }
+
+
+
+	  	function addList(myTable, index) {
+
+
+            var table = document.getElementById(myTable);
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+          	var b=document.getElementById('addedItem').value;
+
+			var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "text";
+            element1.style.width="100%";
+            element1.name = "txtbox[]";
+            element1.value=b;
+            cell1.appendChild(element1);
+ 	
+ 			var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "checkbox";
+            element2.name="chkbox[]";
+            cell2.appendChild(element2);
+			
+			var newItem = document.getElementById('addedItem').value;
+			// document.getElementById('pTotal').innerHTML= rowCount + 1;
+
+            // setItems(index, newItem);
+            getItems(index).push(newItem);
+            // alert(getItems(index));
+            // con.push(newItem);
+            // alert(con);
+            // var curList = ;
+            // alert(addedItem);
+            // var con = lists[index].content;
+            // alert(con);
+            // con.push(addedItem);
+            // alert(con);
+            // lists[index].content.push(addedItem);
+            // getContents().push(addedItem);
+            // contents.push(addedItem);
+            // window.alert("lists[index].content" + con);
+        }
+
+        function deleteList(myTable, index) {
+
+            var table = document.getElementById(myTable);
+            var rowCount = table.rows.length;
+
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[1].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    // deleteItems(index,i);
+                    getItems(index).splice(i,1);
+                    // con.splice(i,1);
+                    rowCount--;
+                    i--;
+ 			        // document.getElementById('pTotal').innerHTML= rowCount;
+                }
+            }
+
+            // alert(getItems(index));
+        }
+        function selectLoc() {
+
+        }
+	</script>
+</body>
+</html>
