@@ -1,10 +1,17 @@
 function initMap() {
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+  }
+  
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: 33.7771, lng: -84.3963},
     zoom: 13
   });
-  var input = (
-      document.getElementById('pac-input'));
+
+  var input = (document.getElementById('pac-input'));
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -18,7 +25,7 @@ function initMap() {
   });
   var circle = new google.maps.Circle({
     map: map,
-    radius: 16093,    // 10 miles in metres
+    radius: 1609.34,    // 10 miles in metres
     fillColor: '#2EFEF7'
   });
   circle.bindTo('center', marker, 'position');
@@ -26,17 +33,32 @@ function initMap() {
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
     marker.setVisible(false);
+    //set user marker to visible
     var place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert("This place isn't found");
-      return;
-    }
+    return;
+  }
 
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(function(position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
+        map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+      });
+  } else {
+      handleLocationError(false, infoWindow, map.getCenter());
+  }
+
+  if (place.geometry.viewport) {
+    map.fitBounds(place.geometry.viewport);
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(13);
+      setZoom(13);
     }
     marker.setIcon(({
       url: place.icon,

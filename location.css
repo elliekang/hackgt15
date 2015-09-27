@@ -37,3 +37,7 @@ html, body {
 .pac-container {
   font-family: Roboto;
 }
+
+#pac-button {
+  font-family: Roboto;
+}
