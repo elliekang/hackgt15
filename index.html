@@ -9,17 +9,19 @@
  	<input type="textbox" id="addedItem" />
     <br>
     <br>
-    <input type="button" value="Add Item List0!" onclick="addList('ToDoListTable0', 0)"/>
-    <input type="button" value="Delete Item List0!" onclick="deleteList('ToDoListTable0', 0)" />
-    <h3 id = "demo0">  </h3>
+    <input id = "firstAdd" type="button" value="Add Item List0!" onclick="addList('ToDoListTable0', 0)"/>
+    <input id = "firstDel" type="button" value="Delete Item List0!" onclick="deleteList('ToDoListTable0', 0)" />
+    <h3 id = "demo0">   </h3>
+    <a href="location.js"><button type="button">Select Location</button></a>
+    <p id = "address">Place address here</p>
     <table id="ToDoListTable0" width="350px" border=".5"></table>
     <br>
     <br>
     <br>
-    <input type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)" />
-    <input type="button" value="Delete Item List1!" onclick="deleteList('ToDoListTable1', 1)" />
+    <input id = "secAdd" type="button" value="Add Item List1!" onclick="addList('ToDoListTable1', 1)" />
+    <input id = "secDel" type="button" value="Delete Item List1!" onclick="deleteList('ToDoListTable1', 1)" />
     <h3 id = "demo1">  </h3>
-    <a href="location.js"><button type="button">Select Location</button></a>
+    
     <table id="ToDoListTable1" width="350px" border=".5"></table>
 
     <!-- <table id="ToDoListTable3" width="350px" border=".5"></table> -->
@@ -31,11 +33,22 @@
 	<script>
 
         var lists = [];
+        document.getElementById('firstAdd').style.visibility='hidden';
+        document.getElementById('firstDel').style.visibility='hidden';
+        document.getElementById('secAdd').style.visibility='hidden';
+        document.getElementById('secDel').style.visibility='hidden';
         // var lName;
         // var con=[];
         // var loc;
        function newList() {
-
+        
+            if (lists.length == 0) {
+                document.getElementById('firstAdd').style.visibility='initial';
+                document.getElementById('firstDel').style.visibility='initial';
+            } else if (lists.length == 1) {
+                document.getElementById('secAdd').style.visibility='initial';
+                document.getElementById('secDel').style.visibility='initial';
+            }
             // var list = {lName:"listName", con:[], loc:"location"};
             // loc = "location";
             // lName = "listName";
