@@ -282,7 +282,7 @@
 
 
     <!-- Map -->
-        <section id="contact" class="map">
+    <section id="contact" class="map">
         <body onload="initMap">
         <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
         <button id="pac-button" onclick="setLocation()">Set Location</button>
@@ -296,6 +296,9 @@
         </small>
         </iframe> -->
     </section>
+    <script src="location.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWCBJKNSWIy-qZ-NSoQPbKJubUtxK5kTI&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
 
 
 
@@ -358,9 +361,7 @@
         });
     });
     </script>
-    <script src="location.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWCBJKNSWIy-qZ-NSoQPbKJubUtxK5kTI&signed_in=true&libraries=places&callback=initMap"
-        async defer></script>
+
 
 </body>
 
