@@ -25,7 +25,7 @@ function initMap() {
   });
   var circle = new google.maps.Circle({
     map: map,
-    radius: 1609.34,    // 10 miles in metres
+    radius: 1609.34,    // 1 miles in metres
     fillColor: '#2EFEF7'
   });
   circle.bindTo('center', marker, 'position');
@@ -82,4 +82,5 @@ function initMap() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
   });
+  document.getElementById("address").innerHTML = place;
 }
